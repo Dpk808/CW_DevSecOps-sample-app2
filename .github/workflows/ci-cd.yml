@@ -27,8 +27,11 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (with retry)
+        run: |
+          for i in 1 2 3; do
+            npm install && break || sleep 10
+          done
 
       - name: Install Snyk CLI
         run: npm install -g snyk
