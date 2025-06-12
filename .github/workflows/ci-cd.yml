@@ -30,11 +30,17 @@ jobs:
       - name: Reset npm registry to official
         run: npm config set registry https://registry.npmjs.org/
 
-      - name: Install Snyk CLI (with retry logic)
-        run: |
-          for i in 1 2 3; do
-            npm install -g snyk && break || sleep 10
-          done
+      # Install app dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run Snyk to scan for vulnerabilities
+      - name: Run Snyk vulnerability scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
 
       - name: Run Snyk for vulnerability scanning
         run: snyk test --severity-threshold=high || echo "⚠️ Snyk found vulnerabilities, but build will continue"
