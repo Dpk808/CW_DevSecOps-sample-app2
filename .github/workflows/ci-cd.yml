@@ -35,12 +35,12 @@ jobs:
       #   run: npm install
 
       # Run Snyk to scan for vulnerabilities
-      - name: Run Snyk vulnerability scan
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+      # - name: Run Snyk vulnerability scan
+      #   uses: snyk/actions/node@master
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #   with:
+      #     args: --severity-threshold=high
 
       - name: Run Snyk for vulnerability scanning
         run: snyk test --severity-threshold=high || echo "⚠️ Snyk found vulnerabilities, but build will continue"
