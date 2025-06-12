@@ -30,9 +30,9 @@ jobs:
       - name: Reset npm registry to official
         run: npm config set registry https://registry.npmjs.org/
 
-      # Install app dependencies
-      - name: Install dependencies
-        run: npm install
+      # # Install app dependencies
+      # - name: Install dependencies
+      #   run: npm install
 
       # Run Snyk to scan for vulnerabilities
       - name: Run Snyk vulnerability scan
