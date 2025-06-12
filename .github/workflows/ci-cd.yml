@@ -27,12 +27,14 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Set npm registry to use Cloudflare mirror (optional)
-        run: npm config set registry https://registry.npmjs.cf/
+      - name: Reset npm registry to official
+        run: npm config set registry https://registry.npmjs.org/
 
-
-      - name: Install Snyk CLI
-        run: npm install -g snyk
+      - name: Install Snyk CLI (with retry logic)
+        run: |
+          for i in 1 2 3; do
+            npm install -g snyk && break || sleep 10
+          done
 
       - name: Run Snyk for vulnerability scanning
         run: snyk test --severity-threshold=high || echo "⚠️ Snyk found vulnerabilities, but build will continue"
