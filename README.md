@@ -1,7 +1,7 @@
 
 # DevSecOps Hands-On Activity Report
 
-## 👨‍💻 Student: Suryansh Mathema  
+## 👨‍💻 Student: Deepak Yadav  
 **Date:** 12/06/2025  
 **Activity:** Analyzing and Enhancing a CI/CD Pipeline using DevSecOps Best Practices  
 **Environment Used:** Docker (instead of Azure VM)
